@@ -1,20 +1,87 @@
 . ./.bash_colors
 
-PS1="${debian_chroot:+($debian_chroot)}"
-PS1+="$IYellow\u@\h$ICyan:\w\$ $Color_Off"
+function git_prompt_command() {
+  branch_pattern="^## ([^${IFS}]*)"
 
-# Also update the terminal title bar.
-Title="${debian_chroot:+($debian_chroot)}"
-Title+="\u@\h:\w"
+  git_status="$(git -c color.status=false status --short --branch 2> /dev/null)"
 
-case "$TERM" in
-xterm*|rxvt*)
-  PS1="\[\e]0;$Title\a\]$PS1"
-  ;;
-*)
-  ;;
-esac
+  # Figure out which branch we're on.
+  if [[ ${git_status} =~ ${branch_pattern} ]]; then
+    branch=${BASH_REMATCH[1]}
+  fi
 
-export PS1
+  # Parse the file details.
+  # Each line is "XY filename", where X denotes the index status, and Y the working status.
+  # TODO: It also allows for renames, but I'm not going to bother with those yet.
+  file_pattern="^([^#])(.) (.*)$"
+  printf %s "${git_status}" |
+  while IFS= read -r line; do
+    if [[ ${line} =~ ${file_pattern} ]]; then
+      index_status=${BASH_REMATCH[1]}
+      working_status=${BASH_REMATCH[2]}
+
+      index_added=0
+      index_modified=0
+      index_deleted=0
+      index_unmerged=0
+      case "$index_status" in
+        A) index_added+=1 ;;
+        M|R|C) index_modified+=1 ;;
+        D) index_deleted+=1 ;;
+        U) index_unmerged+= 1;;
+        *) ;;
+      esac
+
+      working_added=0
+      working_modified=0
+      working_deleted=0
+      working_unmerged=0
+      case "$working_status" in
+        \?) working_added+=1 ;;
+        A) working_added+=1 ;;
+        M) working_modified+=1 ;;
+        D) working_deleted+=1 ;;
+        U) working_unmerged+=1 ;;
+        *) ;;
+      esac
+
+      # Actually do something interesting with these numbers.
+      changes=0
+      changes+=$(($index_added + $index_modified + $index_deleted + $index_unmerged))
+      changes+=$(($working_added + $working_modified + $working_deleted + $working_unmerged))
+
+      if [[ $changes -ne 0 ]]; then
+        echo -n " ${IRed}(${branch})"
+      else
+        echo -n " ${IBlue}(${branch})"
+      fi
+
+      echo -n "${Color_Off}"
+    fi
+  done
+}
+
+function prompt_command() {
+  git_prompt="$(git_prompt_command)"
+
+  PS1="${debian_chroot:+($debian_chroot)}"
+  PS1+="${IYellow}\u@\h${ICyan}:\w${git_prompt}${ICyan}\$ $Color_Off"
+
+  # Also update the terminal title bar.
+  Title="${debian_chroot:+($debian_chroot)}"
+  Title+="\u@\h:\w"
+
+  case "$TERM" in
+    xterm*|rxvt*)
+    PS1="\[\e]0;$Title\a\]$PS1"
+    ;;
+  *)
+    ;;
+  esac
+
+  export PS1
+}
+
+export PROMPT_COMMAND=prompt_command
 
 # vim: syntax=sh
