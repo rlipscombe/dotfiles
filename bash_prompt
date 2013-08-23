@@ -2,5 +2,19 @@
 
 PS1="${debian_chroot:+($debian_chroot)}"
 PS1+="$IYellow\u@\h$ICyan:\w\$ $Color_Off"
+
+# Also update the terminal title bar.
+Title="${debian_chroot:+($debian_chroot)}"
+Title+="\u@\h:\w"
+
+case "$TERM" in
+xterm*|rxvt*)
+  PS1="\[\e]0;$Title\a\]$PS1"
+  ;;
+*)
+  ;;
+esac
+
 export PS1
 
+# vim: syntax=sh
