@@ -1,0 +1,6 @@
+. ./.bash_colors
+
+PS1="${debian_chroot:+($debian_chroot)}"
+PS1+="$IYellow\u@\h$ICyan:\w\$ $Color_Off"
+export PS1
+
