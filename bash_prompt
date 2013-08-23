@@ -19,6 +19,9 @@ function git_prompt_command() {
   branch_pattern="^## ([^${IFS}]*)"
 
   git_status="$(git -c color.status=false status --short --branch 2> /dev/null)"
+  if [[ $? != 0 ]] ; then
+    return
+  fi
 
   # Figure out which branch we're on.
   if [[ ${git_status} =~ ${branch_pattern} ]]; then
