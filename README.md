@@ -1,6 +1,3 @@
-bash_profile
-============
-
 These files make up my bash profile. There's a `.bashrc`, a `.bash_profile` and a bunch of helpers.
 
 Features:
