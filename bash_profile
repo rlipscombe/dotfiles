@@ -1,2 +1,2 @@
-# There's nothing here at the moment.
+[[ -r ~/.bashrc ]] && . ~/.bashrc
 
