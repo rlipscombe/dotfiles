@@ -16,6 +16,7 @@ function git_status_is_dirty() {
 }
 
 function git_prompt_command() {
+  # Note that the pattern is actually (e.g.) "## master...origin/master [ahead 1]"
   branch_pattern="^## ([^${IFS}]*)"
 
   git_status="$(git -c color.status=false status --short --branch 2> /dev/null)"
