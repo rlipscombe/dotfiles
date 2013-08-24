@@ -47,3 +47,12 @@ In the `tests` folder, there's a script which creates a new git repo and working
 
 TODO: Of course, the real question here is: "What do I actually want to see in the prompt?"
 
+## What do I actually want to see in the prompt?
+
+- The branch name.
+- Whether I've got anything to do. That is:
+  - Do I have modified/untracked files that need staging?
+  - Do I have staged files that need pushing? That is: am I ahead?
+  - Do I have files that need merging? That is: am I behind?
+
+Do I _really_ need to know the difference between these states?

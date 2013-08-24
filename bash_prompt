@@ -1,20 +1,5 @@
 . ./.bash_colors
 
-function git_status_is_dirty() {
-  git_status="$1"
-
-  printf %s "${git_status}" |
-  while IFS= read -r line; do
-    if [[ ${line} =~ ${file_pattern} ]]; then
-      index_status=${BASH_REMATCH[1]}
-      working_status=${BASH_REMATCH[2]}
-                      
-      # We came through here somehow, so there must be changes.
-      echo 1
-    fi
-  done
-}
-
 function git_prompt_command() {
   # Note that the pattern is actually (e.g.) "## master...origin/master [ahead 1]"
   branch_pattern="^## ([^${IFS}]*)"
@@ -33,16 +18,19 @@ function git_prompt_command() {
   # Each line is "XY filename", where X denotes the index status, and Y the working status.
   # TODO: It also allows for renames, but I'm not going to bother with those yet.
   file_pattern="^([^#])(.) (.*)$"
+  
+  dirty=0
+  while IFS= read -r line; do
+    if [[ $line =~ $file_pattern ]]; then
+      dirty=1
+    fi
+  done <<< "$git_status"
 
-#  dirty=git_status_is_dirty "$git_status"
-#  echo -n $dirty
-
-  # Actually do something interesting with these numbers.
-#  if [[ -z $dirty ]]; then
-#    echo -n " ${IRed}(${branch})"
-#  else
+  if [[ $dirty == 0 ]]; then
     echo -n " ${IBlue}(${branch})"
-#  fi
+  else
+    echo -n " ${IRed}(${branch})"
+  fi
                                                           
   echo -n "${Color_Off}"
 }
