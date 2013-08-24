@@ -1,0 +1,55 @@
+#!/bin/sh
+rm -rf foo
+mkdir foo
+pushd foo
+git init
+
+# Add a committed file.
+echo 'Committed' > committed
+git add committed
+git commit -m "Add 'committed'." committed
+
+# Modified file.
+echo 'Before' > modified
+git add modified
+git commit -m "Add 'modified'." modified
+echo 'After' > modified
+
+# Missing file.
+echo 'Missing' > missing
+git add missing
+git commit -m "Add 'missing'." missing
+rm missing
+
+# Deleted file.
+echo 'Deleted' > deleted
+git add deleted
+git commit -m "Add 'deleted'." deleted
+git rm deleted
+
+# TODO: Resurrecting files?
+
+# TODO: This isn't working -- Renamed file.
+echo 'Something' > old
+git add old
+git commit -m "Add 'old'." old
+git mv old new
+
+# Modified, added. Part 1.
+echo 'Before' > modified_added
+git add modified_added
+git commit -m "Add 'modified_added'." modified_added
+echo 'After' > modified_added
+git add modified_added
+
+## No commits past this point...
+
+echo 'Newly-added' > new_added
+git add new_added
+echo 'Untracked file' > untracked
+
+clear
+git -c color.status=off status --short --branch
+
+popd
+
