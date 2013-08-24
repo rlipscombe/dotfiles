@@ -1,15 +1,14 @@
 . ./.bash_colors
 
 function git_prompt_command() {
-  # Note that the pattern is actually (e.g.) "## master...origin/master [ahead 1]"
-  branch_pattern="^## ([^${IFS}]*)"
-
   git_status="$(git -c color.status=false status --short --branch 2> /dev/null)"
   if [[ $? != 0 ]] ; then
     return
   fi
 
-  # Figure out which branch we're on.
+  # Note that the pattern is actually (e.g.) "## master...origin/master [ahead 1]"
+  branch_pattern="^## ([^${IFS}]*)"
+
   if [[ ${git_status} =~ ${branch_pattern} ]]; then
     branch=${BASH_REMATCH[1]}
   fi
@@ -20,18 +19,75 @@ function git_prompt_command() {
   file_pattern="^([^#])(.) (.*)$"
   
   dirty=0
+
+  index_added=()
+  index_modified=()
+  index_deleted=()
+  index_unmerged=()
+
+  working_added=()
+  working_modified=()
+  working_deleted=()
+  working_unmerged=()
+
   while IFS= read -r line; do
     if [[ $line =~ $file_pattern ]]; then
+      # Extract the matches.
+      index_status=${BASH_REMATCH[1]}
+      working_status=${BASH_REMATCH[2]}
+      file_path=${BASH_REMATCH[3]}
+
+      case $index_status in
+        A) index_added+=(file_path) ;;
+        M) index_modified+=(file_path) ;;
+        R) index_modified+=(file_path) ;;
+        C) index_modified+=(file_path) ;;
+        D) index_deleted+=(file_path) ;;
+        U) index_unmerged+=(file_path) ;;
+        *) ;;
+      esac
+
+      case $working_status in
+        \?) working_added+=(file_path) ;;
+        A) working_added+=(file_path) ;;
+        M) working_modified+=(file_path) ;;
+        D) working_deleted+=(file_path) ;;
+        U) working_unmerged+=(file_path) ;;
+        *) ;;
+      esac
+
       dirty=1
     fi
   done <<< "$git_status"
 
+  echo -n " ${IWhite}["
+
+  # TODO: The colour should be based on whether we're ahead of or behind the remote.
   if [[ $dirty == 0 ]]; then
-    echo -n " ${IBlue}(${branch})"
+    echo -n "${IBlue}"
   else
-    echo -n " ${IRed}(${branch})"
+    echo -n "${IRed}"
   fi
-                                                          
+
+  echo -n "${branch}"
+
+  # Display index stats:
+  echo -n "${IGreen}"
+  echo -n " +${#index_added[*]}"
+  echo -n " ~${#index_modified[*]}"
+  echo -n " -${#index_deleted[*]}"
+  echo -n " !${#index_unmerged[*]}"
+
+  echo -n "${IWhite} |"
+
+  # Display working stats:
+  echo -n "${IRed}"
+  echo -n " +${#working_added[*]}"
+  echo -n " ~${#working_modified[*]}"
+  echo -n " -${#working_deleted[*]}"
+  echo -n " !${#working_unmerged[*]}"
+
+  echo -n "${IWhite}] "
   echo -n "${Color_Off}"
 }
 

@@ -56,3 +56,38 @@ TODO: Of course, the real question here is: "What do I actually want to see in t
   - Do I have files that need merging? That is: am I behind?
 
 Do I _really_ need to know the difference between these states?
+
+The answer: in order for a piece of information to be useful to me, it must be actionable. That is: there must be something I can do about it. In the cases above, there are different actions that I might take:
+- Nothing.
+- Add files to, or remove files from the index.
+- Commit, or revert the index.
+- Push
+- Pull
+
+So, I guess that's pretty much all I really want to know.
+
+Aside: posh-git uses the following:
+
+By default, the status summary has the following format:
+
+[{HEAD-name} +A ~B -C !D | +E ~F -G !H]
+{HEAD-name} is the current branch, or the SHA of a detached HEAD
+
+Cyan means the branch matches its remote
+Green means the branch is ahead of its remote (green light to push)
+Red means the branch is behind its remote
+Yellow means the branch is both ahead of and behind its remote
+
+ABCD represent the index; EFGH represent the working directory
++ = Added files
+~ = Modified files
+- = Removed files
+! = Conflicted files
+As in git status, index status is dark green and working directory status is dark red
+
+### Ahead/Behind
+
+How do I get a git repo to be ahead of / behind / both a remote? First I need a remote.
+
+    $ git daemon --verbose --export-all --base-path=. --base-path-relaxed --reuseaddr .
+
