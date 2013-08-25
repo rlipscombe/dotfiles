@@ -48,6 +48,7 @@ function git_prompt_command() {
   index_deleted=()
   index_unmerged=()
 
+  working_unknown=()
   working_added=()
   working_modified=()
   working_deleted=()
@@ -71,7 +72,7 @@ function git_prompt_command() {
       esac
 
       case $working_status in
-        \?) working_added+=(file_path) ;;
+        \?) working_unknown+=(file_path) ;;
         A) working_added+=(file_path) ;;
         M) working_modified+=(file_path) ;;
         D) working_deleted+=(file_path) ;;
@@ -116,6 +117,9 @@ function git_prompt_command() {
 
   # Display working stats:
   echo -n "${IRed}"
+  if [[ ${#working_unknown[*]} != 0 ]]; then
+    echo -n " ?${#working_unknown[*]}"
+  fi
   if [[ ${#working_added[*]} != 0 ]]; then
     echo -n " +${#working_added[*]}"
   fi
