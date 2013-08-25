@@ -7,10 +7,21 @@ function git_prompt_command() {
   fi
 
   # Note that the pattern is actually (e.g.) "## master...origin/master [ahead 1]"
-  branch_pattern="^## ([^${IFS}]*)"
-
-  if [[ ${git_status} =~ ${branch_pattern} ]]; then
+  initial_branch_pattern="^## Initial commit on ([^${IFS}]*)"
+  normal_branch_pattern="^## ([^${IFS}]*)"
+  ahead_branch_pattern="^## (.*)\.\.\.([^${IFS}]*) \[ahead (.*)\]"
+ 
+  ahead=0
+ 
+  if [[ ${git_status} =~ ${normal_branch_pattern} ]]; then
     branch=${BASH_REMATCH[1]}
+  fi
+  if [[ ${git_status} =~ ${initial_branch_pattern} ]]; then
+    branch=${BASH_REMATCH[1]}
+  fi
+  if [[ ${git_status} =~ ${ahead_branch_pattern} ]]; then
+    branch=${BASH_REMATCH[1]}
+    ahead=${BASH_REMATCH[3]}
   fi
 
   # Parse the file details.
@@ -62,30 +73,45 @@ function git_prompt_command() {
 
   echo -n " ${IWhite}["
 
-  # TODO: The colour should be based on whether we're ahead of or behind the remote.
-  if [[ $dirty == 0 ]]; then
+  # The colour should be based on whether we're ahead of or behind the remote.
+  if [[ $ahead == 0 ]]; then
     echo -n "${IBlue}"
   else
-    echo -n "${IRed}"
+    echo -n "${IGreen}"
   fi
 
   echo -n "${branch}"
 
   # Display index stats:
   echo -n "${IGreen}"
-  echo -n " +${#index_added[*]}"
-  echo -n " ~${#index_modified[*]}"
-  echo -n " -${#index_deleted[*]}"
-  echo -n " !${#index_unmerged[*]}"
-
-  echo -n "${IWhite} |"
+  if [[ ${#index_added[*]} != 0 ]]; then
+    echo -n " +${#index_added[*]}"
+  fi
+  
+  if [[ ${#index_modified[*]} != 0 ]]; then
+    echo -n " ~${#index_modified[*]}"
+  fi
+  if [[ ${#index_deleted[*]} != 0 ]]; then
+    echo -n " -${#index_deleted[*]}"
+  fi
+  if [[ ${#index_unmerged[*]} != 0 ]]; then
+    echo -n " !${#index_unmerged[*]}"
+  fi
 
   # Display working stats:
   echo -n "${IRed}"
-  echo -n " +${#working_added[*]}"
-  echo -n " ~${#working_modified[*]}"
-  echo -n " -${#working_deleted[*]}"
-  echo -n " !${#working_unmerged[*]}"
+  if [[ ${#working_added[*]} != 0 ]]; then
+    echo -n " +${#working_added[*]}"
+  fi
+  if [[ ${#working_modified[*]} != 0 ]]; then
+    echo -n " ~${#working_modified[*]}"
+  fi
+  if [[ ${#working_deleted[*]} != 0 ]]; then
+    echo -n " -${#working_deleted[*]}"
+  fi
+  if [[ ${#working_unmerged[*]} != 0 ]]; then
+    echo -n " !${#working_unmerged[*]}"
+  fi
 
   echo -n "${IWhite}] "
   echo -n "${Color_Off}"
