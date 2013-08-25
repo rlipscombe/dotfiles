@@ -10,8 +10,11 @@ function git_prompt_command() {
   initial_branch_pattern="^## Initial commit on ([^${IFS}]*)"
   normal_branch_pattern="^## ([^${IFS}]*)"
   ahead_branch_pattern="^## (.*)\.\.\.([^${IFS}]*) \[ahead (.*)\]"
+  behind_branch_pattern="^## (.*)\.\.\.([^${IFS}]*) \[behind (.*)\]"
+  ahead_behind_branch_pattern="^## (.*)\.\.\.([^${IFS}]*) \[ahead (.*), behind (.*)\]"
  
   ahead=0
+  behind=0
  
   if [[ ${git_status} =~ ${normal_branch_pattern} ]]; then
     branch=${BASH_REMATCH[1]}
@@ -22,6 +25,15 @@ function git_prompt_command() {
   if [[ ${git_status} =~ ${ahead_branch_pattern} ]]; then
     branch=${BASH_REMATCH[1]}
     ahead=${BASH_REMATCH[3]}
+  fi  
+  if [[ ${git_status} =~ ${behind_branch_pattern} ]]; then
+    branch=${BASH_REMATCH[1]}
+    behind=${BASH_REMATCH[3]}
+  fi
+  if [[ ${git_status} =~ ${ahead_behind_branch_pattern} ]]; then
+    branch=${BASH_REMATCH[1]}
+    ahead=${BASH_REMATCH[3]}
+    behind=${BASH_REMATCH[4]}
   fi
 
   # Parse the file details.
@@ -74,10 +86,14 @@ function git_prompt_command() {
   echo -n " ${IWhite}["
 
   # The colour should be based on whether we're ahead of or behind the remote.
-  if [[ $ahead == 0 ]]; then
-    echo -n "${IBlue}"
-  else
+  if [[ $ahead != 0 && $behind != 0 ]]; then
+    echo -n "${IYellow}"
+  elif [[ $ahead != 0 ]]; then
     echo -n "${IGreen}"
+  elif [[ $behind != 0 ]]; then
+    echo -n "${IRed}"
+  else
+    echo -n "${IBlue}"
   fi
 
   echo -n "${branch}"
