@@ -1,0 +1,30 @@
+# Create a repository.
+mkdir remote
+cd remote
+touch a
+git add a
+git commit -m "a" a
+cd ..
+
+# Clone it.
+git clone file:///Users/roger/tmp/remote local
+
+# Commit a file to local. This puts us ahead.
+cd local
+touch b
+git add b
+git commit -m "b" b
+cd ..
+
+# Commit a file to remote; add the same file to local. This puts us behind.
+cd remote
+echo 'Moo' > moo
+git add moo
+git commit -m 'Moo' moo
+cd ../local
+echo 'Moo' > moo
+git add moo
+git pull
+
+# TODO: What if we don't add the local moo, just create it?
+
