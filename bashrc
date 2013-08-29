@@ -4,6 +4,8 @@
 export GREP_OPTIONS='--color=auto'
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
+nvm use imp-master
+
 export PATH=$PATH:$HOME/imp/toolchain/bin
 
 case $OSTYPE in
