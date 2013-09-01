@@ -141,7 +141,7 @@ function prompt_command() {
   git_prompt="$(git_prompt_command)"
 
   PS1="${debian_chroot:+($debian_chroot)}"
-  PS1+="${IYellow}\u@\h${ICyan}:\w${git_prompt}${ICyan}\$ $Color_Off"
+  PS1+="${IYellow}\u@\h${ICyan}:\w${git_prompt}${ICyan}\\$ $Color_Off"
 
   # Also update the terminal title bar.
   Title="${debian_chroot:+($debian_chroot)}"
