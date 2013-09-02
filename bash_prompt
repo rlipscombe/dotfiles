@@ -140,8 +140,19 @@ function git_prompt_command() {
 function prompt_command() {
   git_prompt="$(git_prompt_command)"
 
+  # debian_chroot stuff.
   PS1="${debian_chroot:+($debian_chroot)}"
-  PS1+="${IYellow}\u@\h${ICyan}:\w${git_prompt}${ICyan}\\$ $Color_Off"
+  # roger@host:~/cwd
+  PS1+="${IYellow}\u@\h${ICyan}:\w"
+  # [git stuff]
+  PS1+="${git_prompt}"
+  # $ suffix. Different colour for root.
+  if [[ $UID == 0 ]]; then
+    PS1+="${IRed}\\$ "
+  else
+    PS1+="${ICyan}\\$ "
+  fi
+  PS1+="$Color_Off"
 
   # Also update the terminal title bar.
   Title="${debian_chroot:+($debian_chroot)}"
@@ -160,4 +171,4 @@ function prompt_command() {
 
 export PROMPT_COMMAND=prompt_command
 
-# vim: syntax=sh
+# vim:set syntax=sh:set filetype=sh
