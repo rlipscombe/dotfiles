@@ -1,4 +1,22 @@
-. ./.bash_colors
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+. $DIR/.bash_colors
+
+PromptColor_Git="$IWhite"
+PromptColor_BranchAhead="$IGreen"
+PromptColor_BranchBehind="$IRed"
+PromptColor_BranchBoth="$IYellow"
+PromptColor_BranchNeither="$IBlue"
+PromptColor_IndexStats="$IGreen"
+PromptColor_WorkingStats="$IRed"
+PromptColor_UserAtHost="$IYellow"
+PromptColor_WorkingDir="$ICyan"
+PromptColor_Dollar="$ICyan"
+
+if [[ $UID == 0 ]]; then
+  PromptColor_UserAtHost="$IRed"
+  PromptColor_WorkingDir="$IYellow"
+  PromptColor_Dollar="$IRed"
+fi
 
 function git_prompt_command() {
   git_status="$(git -c color.status=false status --short --branch 2> /dev/null)"
@@ -84,23 +102,23 @@ function git_prompt_command() {
     fi
   done <<< "$git_status"
 
-  echo -n " ${IWhite}["
+  echo -n " ${PromptColor_Git}["
 
   # The colour should be based on whether we're ahead of or behind the remote.
   if [[ $ahead != 0 && $behind != 0 ]]; then
-    echo -n "${IYellow}"
+    echo -n "${PromptColor_BranchBoth}"
   elif [[ $ahead != 0 ]]; then
-    echo -n "${IGreen}"
+    echo -n "${PromptColor_BranchAhead}"
   elif [[ $behind != 0 ]]; then
-    echo -n "${IRed}"
+    echo -n "${PromptColor_BranchBehind}"
   else
-    echo -n "${IBlue}"
+    echo -n "${PromptColor_BranchNeither}"
   fi
 
   echo -n "${branch}"
 
   # Display index stats:
-  echo -n "${IGreen}"
+  echo -n "${PromptColor_IndexStats}"
   if [[ ${#index_added[*]} != 0 ]]; then
     echo -n " +${#index_added[*]}"
   fi
@@ -116,7 +134,7 @@ function git_prompt_command() {
   fi
 
   # Display working stats:
-  echo -n "${IRed}"
+  echo -n "${PromptColor_WorkingStats}"
   if [[ ${#working_unknown[*]} != 0 ]]; then
     echo -n " ?${#working_unknown[*]}"
   fi
@@ -133,7 +151,7 @@ function git_prompt_command() {
     echo -n " !${#working_unmerged[*]}"
   fi
 
-  echo -n "${IWhite}] "
+  echo -n "${PromptColor_Git}] "
   echo -n "${Color_Off}"
 }
 
@@ -143,16 +161,13 @@ function prompt_command() {
   # debian_chroot stuff.
   PS1="${debian_chroot:+($debian_chroot)}"
   # roger@host:~/cwd
-  PS1+="${IYellow}\u@\h${ICyan}:\w"
+  PS1+="${PromptColor_UserAtHost}\u@\h${PromptColor_WorkingDir}:\w"
   # [git stuff]
   PS1+="${git_prompt}"
-  # $ suffix. Different colour for root.
-  if [[ $UID == 0 ]]; then
-    PS1+="${IRed}\\$ "
-  else
-    PS1+="${ICyan}\\$ "
-  fi
+  # $ suffix.
+  PS1+="${PromptColor_Dollar}\\$"
   PS1+="$Color_Off"
+  PS1+=" "
 
   # Also update the terminal title bar.
   Title="${debian_chroot:+($debian_chroot)}"
