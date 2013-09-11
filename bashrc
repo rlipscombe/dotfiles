@@ -12,7 +12,7 @@ case $OSTYPE in
     # Put homebrew at the start of the PATH.
     export PATH=/usr/local/bin:$PATH
 
-    # imp build process wants to use homebrew compiler, rather than the built-in one.
+    # Tell the ei build process to use gcc from homebrew:
     export IMP_CC=/usr/local/bin/gcc-4.7
     export IMP_CXX=/usr/local/bin/g++-4.7
     ;;
@@ -20,4 +20,10 @@ case $OSTYPE in
   *)
     ;;
 esac
+
+# "gnome-terminal" actually supports 256 color; turn that on.
+if [ "$COLORTERM" == "gnome-terminal" ]; then
+  export TERM=xterm-256color
+  export COLORTERM=xterm-256color
+fi
 
