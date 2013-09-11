@@ -56,7 +56,6 @@ function git_prompt_command() {
 
   # Parse the file details.
   # Each line is "XY filename", where X denotes the index status, and Y the working status.
-  # TODO: It also allows for renames, but I'm not going to bother with those yet.
   file_pattern="^([^#])(.) (.*)$"
   
   dirty=0
