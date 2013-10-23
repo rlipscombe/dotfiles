@@ -2,6 +2,7 @@
 case $OSTYPE in
   darwin*)
     alias ls='ls -FGh'
+    alias lsusb='system_profiler SPUSBDataType'
   ;;
   *)
     alias ls='ls -F --color=auto'
