@@ -9,6 +9,8 @@ export PATH=/usr/local/bin:$PATH:$HOME/bin
 
 # "gnome-terminal" actually supports 256 color; turn that on.
 if [ "$COLORTERM" == "gnome-terminal" ]; then
+  # But note that it doesn't support all of xterm's escape codes, so weird things
+  # can happen if you trust this too much.
   export TERM=xterm-256color
   export COLORTERM=xterm-256color
 fi
