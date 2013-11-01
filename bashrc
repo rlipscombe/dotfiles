@@ -8,6 +8,7 @@ export GREP_OPTIONS='--color=auto'
 export PATH=/usr/local/bin:$PATH:$HOME/bin
 
 # "gnome-terminal" actually supports 256 color; turn that on.
+export ACTUAL_TERM=$TERM
 if [ "$COLORTERM" == "gnome-terminal" ]; then
   # But note that it doesn't support all of xterm's escape codes, so weird things
   # can happen if you trust this too much.
