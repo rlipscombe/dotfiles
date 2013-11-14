@@ -168,14 +168,14 @@ function git_prompt_command() {
   echo -n "${Color_Off}"
 }
 
-if [[ ${SERVER_ID} != '' ]]; then
-  Prompt_Host="$SERVER_ID"
-else
-  Prompt_Host="\h"
-fi
-
 function prompt_command() {
   git_prompt="$(git_prompt_command)"
+
+  if [[ ${SERVER_ID} != '' ]]; then
+    Prompt_Host="$SERVER_ID"
+  else
+    Prompt_Host="\h"
+  fi
 
   # debian_chroot stuff.
   PS1="${debian_chroot:+($debian_chroot)}"
@@ -201,9 +201,13 @@ function prompt_command() {
   fi
   # If host == roger-p5q, (not remote) don't bother including it.
   if [[ $SSH_TTY != '' ]]; then
-    Title+="${Prompt_Host}:"
+      Title_Host="\h"
   fi
-  # TODO: For detecting SSH logins -- http://superuser.com/a/300320/4206
+  # SSH_TTY isn't set when sudo on a remote host. Try SERVER_ID.
+  if [[ $SERVER_ID != '' ]]; then
+      Title_Host="$SERVER_ID"
+  fi
+  Title+="${Title_Host}:"
   Title+="\w"
 
   case "$TERM" in

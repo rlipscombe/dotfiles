@@ -20,3 +20,6 @@ if [ -f $HOME/bin/ei ]; then
   source $HOME/bin/ei
 fi
 
+# Slightly iffy hack to get SERVER_ID set, even when using sudo.
+[[ -s /etc/profile.d/chef_vars.sh ]] && . /etc/profile.d/chef_vars.sh
+
