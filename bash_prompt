@@ -1,6 +1,10 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . $DIR/.bash_colors
 
+# If you're logged in as this person, we don't bother showing it in the title bar.
+# This is all in the goal of shortening the title in the task bar.
+HOME_USER=roger
+
 PromptColor_Git="$IWhite"
 PromptColor_BranchAhead="$IGreen"
 PromptColor_BranchBehind="$IRed"
@@ -185,8 +189,16 @@ function prompt_command() {
 
   # Also update the terminal title bar.
   Title="${debian_chroot:+($debian_chroot)}"
+  # If user name == roger, don't bother including it.
+  if [[ $USER != $HOME_USER ]]; then
+    Title+="\u@"
+  fi
+  # If host == roger-p5q, (not remote) don't bother including it.
+  if [[ $SSH_TTY != '' ]]; then
+    Title+="${Prompt_Host}:"
+  fi
   # TODO: For detecting SSH logins -- http://superuser.com/a/300320/4206
-  Title+="\u@${Prompt_Host}:\w"
+  Title+="\w"
 
   case "$TERM" in
     xterm*|rxvt*)
