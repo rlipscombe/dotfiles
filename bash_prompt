@@ -5,6 +5,13 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # This is all in the goal of shortening the title in the task bar.
 HOME_USER=roger
 
+# Prefix colours u@h:
+PromptColor_User="$IYellow"
+PromptColor_At="$IYellow"
+PromptColor_Host="$IYellow"
+PromptColor_WorkingDir="$ICyan"
+
+# Git colours [branch +3 ~2]
 PromptColor_Git="$IWhite"
 PromptColor_BranchAhead="$IGreen"
 PromptColor_BranchBehind="$IRed"
@@ -12,12 +19,11 @@ PromptColor_BranchBoth="$IYellow"
 PromptColor_BranchNeither="$IBlue"
 PromptColor_IndexStats="$IGreen"
 PromptColor_WorkingStats="$IRed"
-PromptColor_User="$IYellow"
-PromptColor_At="$IYellow"
-PromptColor_Host="$IYellow"
-PromptColor_WorkingDir="$ICyan"
+
+# Suffix colours $ or #
 PromptColor_Dollar="$ICyan"
 
+# If root, then make it a bit lairy.
 if [[ $UID == 0 ]]; then
   PromptColor_User="$IRed"
   PromptColor_At="$IRed"
