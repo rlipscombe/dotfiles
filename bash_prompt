@@ -8,12 +8,16 @@ PromptColor_BranchBoth="$IYellow"
 PromptColor_BranchNeither="$IBlue"
 PromptColor_IndexStats="$IGreen"
 PromptColor_WorkingStats="$IRed"
-PromptColor_UserAtHost="$IYellow"
+PromptColor_User="$IYellow"
+PromptColor_At="$IYellow"
+PromptColor_Host="$IYellow"
 PromptColor_WorkingDir="$ICyan"
 PromptColor_Dollar="$ICyan"
 
 if [[ $UID == 0 ]]; then
-  PromptColor_UserAtHost="$IRed"
+  PromptColor_User="$IRed"
+  PromptColor_At="$IRed"
+  PromptColor_Host="$IRed"
   PromptColor_WorkingDir="$IYellow"
   PromptColor_Dollar="$IRed"
 fi
@@ -154,13 +158,24 @@ function git_prompt_command() {
   echo -n "${Color_Off}"
 }
 
+if [[ ${SERVER_ID} != '' ]]; then
+  Prompt_Host="$SERVER_ID"
+else
+  Prompt_Host="\h"
+fi
+
 function prompt_command() {
   git_prompt="$(git_prompt_command)"
 
   # debian_chroot stuff.
   PS1="${debian_chroot:+($debian_chroot)}"
   # roger@host:~/cwd
-  PS1+="${PromptColor_UserAtHost}\u@\h${PromptColor_WorkingDir}:\w"
+  PS1+="${PromptColor_User}\u"
+  PS1+="${PromptColor_At}@"
+  PS1+="${PromptColor_Host}"
+  PS1+="${Prompt_Host}"
+  PS1+="${PromptColor_WorkingDir}:\w"
+
   # [git stuff]
   PS1+="${git_prompt}"
   # $ suffix.
@@ -170,11 +185,12 @@ function prompt_command() {
 
   # Also update the terminal title bar.
   Title="${debian_chroot:+($debian_chroot)}"
-  Title+="\u@\h:\w"
+  # TODO: For detecting SSH logins -- http://superuser.com/a/300320/4206
+  Title+="\u@${Prompt_Host}:\w"
 
   case "$TERM" in
     xterm*|rxvt*)
-    PS1="\[\e]0;$Title\a\]$PS1"
+      PS1="\[\e]0;$Title\a\]$PS1"
     ;;
   *)
     ;;
@@ -185,4 +201,26 @@ function prompt_command() {
 
 export PROMPT_COMMAND=prompt_command
 
-# vim:set syntax=sh:set filetype=sh
+show_command_in_title_bar()
+{
+  case "$BASH_COMMAND" in
+    *\033]0*)
+      # The command is trying to set the title bar,
+      # probably due to $PROMPT_COMMAND above.
+      # Skip it.
+      ;;
+    *)
+      echo -ne "\e]0;${BASH_COMMAND}\007"
+      ;;
+  esac
+}
+
+case "$TERM" in
+  xterm*|rxvt*)
+    trap show_command_in_title_bar DEBUG
+    ;;
+  *)
+    ;;
+esac
+
+# vim: syntax=sh: filetype=sh
