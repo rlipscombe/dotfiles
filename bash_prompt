@@ -40,7 +40,8 @@ function git_prompt_command() {
 
   # Note that the pattern is actually (e.g.) "## master...origin/master [ahead 1]"
   initial_branch_pattern="^## Initial commit on ([^${IFS}]*)"
-  normal_branch_pattern="^## ([^${IFS}]*)"
+  normal_branch_pattern1="^## ([^${IFS}]*)"
+  normal_branch_pattern2="^## (.*)\.\.\.([^${IFS}]*)"
   ahead_branch_pattern="^## (.*)\.\.\.([^${IFS}]*) \[ahead (.*)\]"
   behind_branch_pattern="^## (.*)\.\.\.([^${IFS}]*) \[behind (.*)\]"
   ahead_behind_branch_pattern="^## (.*)\.\.\.([^${IFS}]*) \[ahead (.*), behind (.*)\]"
@@ -48,7 +49,10 @@ function git_prompt_command() {
   ahead=0
   behind=0
  
-  if [[ ${git_status} =~ ${normal_branch_pattern} ]]; then
+  if [[ ${git_status} =~ ${normal_branch_pattern1} ]]; then
+    branch=${BASH_REMATCH[1]}
+  fi
+  if [[ ${git_status} =~ ${normal_branch_pattern2} ]]; then
     branch=${BASH_REMATCH[1]}
   fi
   if [[ ${git_status} =~ ${initial_branch_pattern} ]]; then
