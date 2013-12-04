@@ -207,7 +207,9 @@ function prompt_command() {
   if [[ $SERVER_ID != '' ]]; then
       Title_Host="$SERVER_ID"
   fi
-  Title+="${Title_Host}:"
+  if [[ $Title_Host != '' ]]; then
+    Title+="${Title_Host}:"
+  fi
   Title+="\w"
 
   case "$TERM" in
