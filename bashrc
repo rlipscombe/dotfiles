@@ -5,6 +5,8 @@ export GREP_OPTIONS='--color=auto'
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
 
+[[ -f $HOME/.dir_colors ]] && eval `dircolors ~/.dir_colors`
+
 export PATH=/usr/local/bin:$PATH:$HOME/bin
 
 # "gnome-terminal" actually supports 256 color; turn that on.
