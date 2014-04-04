@@ -45,6 +45,7 @@ function git_prompt_command() {
   ahead_branch_pattern="^## (.*)\.\.\.([^${IFS}]*) \[ahead (.*)\]"
   behind_branch_pattern="^## (.*)\.\.\.([^${IFS}]*) \[behind (.*)\]"
   ahead_behind_branch_pattern="^## (.*)\.\.\.([^${IFS}]*) \[ahead (.*), behind (.*)\]"
+  gone_branch_pattern="^## (.*)\.\.\.([^${IFS}]*) \[gone]"
  
   ahead=0
   behind=0
@@ -56,6 +57,9 @@ function git_prompt_command() {
     branch=${BASH_REMATCH[1]}
   fi
   if [[ ${git_status} =~ ${initial_branch_pattern} ]]; then
+    branch=${BASH_REMATCH[1]}
+  fi
+  if [[ ${git_status} =~ ${gone_branch_pattern} ]]; then
     branch=${BASH_REMATCH[1]}
   fi
   if [[ ${git_status} =~ ${ahead_branch_pattern} ]]; then
