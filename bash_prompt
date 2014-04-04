@@ -6,10 +6,19 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 HOME_USER=roger
 
 # Prefix colours u@h:
-PromptColor_User="$IYellow"
-PromptColor_At="$IYellow"
-PromptColor_Host="$IYellow"
-PromptColor_WorkingDir="$ICyan"
+if [ -f ~/.home ] ; then
+    PromptColor_User="$IGreen"
+    PromptColor_At="$IGreen"
+    PromptColor_Host="$IGreen"
+    PromptColor_Colon="$ICyan"
+    PromptColor_WorkingDir="$ICyan"
+else
+    PromptColor_User="$IRed"
+    PromptColor_At="$IRed"
+    PromptColor_Host="$IRed"
+    PromptColor_Colon="$ICyan"
+    PromptColor_WorkingDir="$ICyan"
+fi
 
 # Git colours [branch +3 ~2]
 PromptColor_Git="$IWhite"
@@ -28,6 +37,7 @@ if [[ $UID == 0 ]]; then
   PromptColor_User="$IRed"
   PromptColor_At="$IRed"
   PromptColor_Host="$IRed"
+  PromptColor_Colon="$IYellow"
   PromptColor_WorkingDir="$IYellow"
   PromptColor_Dollar="$IRed"
 fi
@@ -192,7 +202,8 @@ function prompt_command() {
   PS1+="${PromptColor_At}@"
   PS1+="${PromptColor_Host}"
   PS1+="${Prompt_Host}"
-  PS1+="${PromptColor_WorkingDir}:\w"
+  PS1+="${PromptColor_Colon}:"
+  PS1+="${PromptColor_WorkingDir}\w"
 
   # [git stuff]
   PS1+="${git_prompt}"
