@@ -7,9 +7,9 @@ HOME_USER=roger
 
 # Prefix colours u@h:
 if [ -f ~/.home ] ; then
-    PromptColor_User="$IGreen"
-    PromptColor_At="$IGreen"
-    PromptColor_Host="$IGreen"
+    PromptColor_User="$IYellow"
+    PromptColor_At="$IYellow"
+    PromptColor_Host="$IYellow"
     PromptColor_Colon="$ICyan"
     PromptColor_WorkingDir="$ICyan"
 else
