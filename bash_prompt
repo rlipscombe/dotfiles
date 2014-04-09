@@ -13,9 +13,9 @@ if [ -f ~/.home ] ; then
     PromptColor_Colon="$ICyan"
     PromptColor_WorkingDir="$ICyan"
 else
-    PromptColor_User="$IRed"
-    PromptColor_At="$IRed"
-    PromptColor_Host="$IRed"
+    PromptColor_User="$IPurple"
+    PromptColor_At="$IPurple"
+    PromptColor_Host="$IPurple"
     PromptColor_Colon="$ICyan"
     PromptColor_WorkingDir="$ICyan"
 fi
