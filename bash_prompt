@@ -6,28 +6,35 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 HOME_USER=roger
 
 # Prefix colours u@h:
-if [ -z "$SSH_TTY" ] ; then
-    PromptColor_User="$IYellow"
-    PromptColor_At="$IYellow"
-    PromptColor_Host="$IYellow"
-    PromptColor_Colon="$ICyan"
-    PromptColor_WorkingDir="$ICyan"
-else
+if [ -v SSH_TTY ] ; then
+    # We're using ssh.
     PromptColor_User="$IPurple"
     PromptColor_At="$IPurple"
     PromptColor_Host="$IPurple"
     PromptColor_Colon="$ICyan"
     PromptColor_WorkingDir="$ICyan"
-fi
-
-# If root, then make it a bit lairy.
-if [[ $UID == 0 ]]; then
-  PromptColor_User="$IRed"
-  PromptColor_At="$IRed"
-  PromptColor_Host="$IRed"
-  PromptColor_Colon="$IYellow"
-  PromptColor_WorkingDir="$IYellow"
-  PromptColor_Dollar="$IRed"
+elif [[ $UID == 0 ]]; then
+    # root
+    PromptColor_User="$IRed"
+    PromptColor_At="$IRed"
+    PromptColor_Host="$IRed"
+    PromptColor_Colon="$IYellow"
+    PromptColor_WorkingDir="$IYellow"
+    PromptColor_Dollar="$IRed"
+elif [ -v SUDO_USER ] ; then
+    # We're sudo, but not root
+    PromptColor_User="$IGreen"
+    PromptColor_At="$IGreen"
+    PromptColor_Host="$IGreen"
+    PromptColor_Colon="$ICyan"
+    PromptColor_WorkingDir="$ICyan"
+else
+    # Normal
+    PromptColor_User="$IYellow"
+    PromptColor_At="$IYellow"
+    PromptColor_Host="$IYellow"
+    PromptColor_Colon="$ICyan"
+    PromptColor_WorkingDir="$ICyan"
 fi
 
 # Git colours [branch +3 ~2]
