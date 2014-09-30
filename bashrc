@@ -26,3 +26,4 @@ fi
 [[ -s /etc/profile.d/chef_vars.sh ]] && . /etc/profile.d/chef_vars.sh
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
+type -P direnv &>/dev/null && eval "$(direnv hook bash)"
