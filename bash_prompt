@@ -6,7 +6,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 HOME_USER=roger
 
 # Prefix colours u@h:
-if [ -v SSH_TTY ] ; then
+if [ "$SSH_TTY" != "" ] ; then
     # We're using ssh.
     PromptColor_User="$IPurple"
     PromptColor_At="$IPurple"
@@ -22,7 +22,7 @@ elif [[ $UID == 0 ]]; then
     PromptColor_Colon="$IYellow"
     PromptColor_WorkingDir="$IYellow"
     PromptColor_Dollar="$IRed"
-elif [ -v SUDO_USER ] ; then
+elif [ "$SUDO_USER" != "" ] ; then
     # We're sudo, but not root
     PromptColor_User="$IGreen"
     PromptColor_At="$IGreen"
