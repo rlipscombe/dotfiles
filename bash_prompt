@@ -48,6 +48,7 @@ PromptColor_BranchBoth="$IYellow"
 PromptColor_BranchNeither="$IBlue"
 PromptColor_IndexStats="$IGreen"
 PromptColor_WorkingStats="$IRed"
+PromptColor_Kerl="$IGreen"
 
 function git_prompt_command() {
   git_status="$(git -c color.status=false status --short --branch 2> /dev/null)"
@@ -212,8 +213,18 @@ function prompt_command() {
   PS1+="${PromptColor_Colon}:"
   PS1+="${PromptColor_WorkingDir}\w"
 
+  # kerl stuff
+  case "$(type -P kerl)" in
+      "")
+          true ;;
+      *)
+          PS1+="${PromptColor_Kerl}"
+          PS1+="$(kerl prompt)"
+    esac
+
   # [git stuff]
   PS1+="${git_prompt}"
+
   # $ suffix.
   PS1+="${PromptColor_Dollar}\\$"
   PS1+="$Color_Off"
