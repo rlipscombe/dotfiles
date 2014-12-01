@@ -22,8 +22,12 @@ if [ -f $HOME/bin/ei ]; then
   source $HOME/bin/ei
 fi
 
+export EDITOR=vi
+export VISUAL=vi
+
 # Slightly iffy hack to get SERVER_ID set, even when using sudo.
 [[ -s /etc/profile.d/chef_vars.sh ]] && . /etc/profile.d/chef_vars.sh
+
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 type -P direnv &>/dev/null && eval "$(direnv hook bash)"
