@@ -3,6 +3,7 @@
 
 export GREP_OPTIONS='--color=auto'
 
+export NVM_DIR=$HOME/.nvm
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
 
 [[ -f $HOME/.dir_colors ]] && eval `dircolors ~/.dir_colors`
