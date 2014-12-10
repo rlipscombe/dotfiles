@@ -219,7 +219,11 @@ function prompt_command() {
           true ;;
       *)
           PS1+="${PromptColor_Kerl}"
-          PS1+="$(kerl prompt)"
+          KERL_ACTIVE_PATH=$(kerl active | tail -1)
+          KERL_ACTIVE=$(kerl list installations | grep "${KERL_ACTIVE_PATH}\$" | cut -d' ' -f1)
+          if [[ $KERL_ACTIVE != '' ]]; then
+            PS1+=" ($KERL_ACTIVE)"
+          fi
     esac
 
   # [git stuff]
