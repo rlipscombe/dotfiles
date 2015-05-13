@@ -8,5 +8,5 @@ These files make up my bash profile. There's a `.bashrc`, a `.bash_profile` and 
 
 ## Installation
 
-    git clone https://github.com/rlipscombe/bash_profile
-    bash_profile/mk
+    git clone https://github.com/rlipscombe/dotfiles
+    dotfiles/mk
