@@ -190,7 +190,7 @@ function git_prompt_command() {
     echo -n " !${#working_unmerged[*]}"
   fi
 
-  echo -n "${PromptColor_Git}] "
+  echo -n "${PromptColor_Git}]"
   echo -n "${Color_Off}"
 }
 
@@ -230,7 +230,7 @@ function prompt_command() {
   PS1+="${git_prompt}"
 
   # $ suffix.
-  PS1+="${PromptColor_Dollar}\\$"
+  PS1+=" ${PromptColor_Dollar}\\$"
   PS1+="$Color_Off"
   PS1+=" "
 
