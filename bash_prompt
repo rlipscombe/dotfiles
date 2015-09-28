@@ -255,11 +255,14 @@ function prompt_command() {
 
   case "$TERM" in
     xterm*|rxvt*)
-      PS1="\[\e]0;$Title\a\]$PS1"
-    ;;
-  *)
-    ;;
-  esac
+        # Set the window title.
+        PS1="\[\e]0;$Title\a\]$PS1"
+        # Reset the cursor color.
+        PS1="$PS1\[\e]12;#c0c0c0\a\]"
+        ;;
+    *)
+        ;;
+esac
 
   export PS1
 }
