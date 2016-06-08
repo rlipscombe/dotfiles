@@ -23,6 +23,8 @@ if [ -f $HOME/bin/ei ]; then
   source $HOME/bin/ei
 fi
 
+export HISTTIMEFORMAT='%F %T'
+
 export EDITOR=vi
 export VISUAL=vi
 
