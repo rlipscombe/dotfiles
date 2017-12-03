@@ -1,15 +1,6 @@
 [[ -s $HOME/.bash_prompt ]] && . $HOME/.bash_prompt
 [[ -f $HOME/.bash_aliases ]] && . $HOME/.bash_aliases
 
-export GREP_OPTIONS='--color=auto'
-
-export NVM_DIR=$HOME/.nvm
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
-
-[[ -f $HOME/.dir_colors ]] && eval `dircolors ~/.dir_colors`
-
-export PATH=/usr/local/bin:$PATH:$HOME/bin
-
 # "gnome-terminal" actually supports 256 color; turn that on.
 export ACTUAL_TERM=$TERM
 if [ "$COLORTERM" == "gnome-terminal" ]; then
@@ -19,23 +10,25 @@ if [ "$COLORTERM" == "gnome-terminal" ]; then
   export COLORTERM=xterm-256color
 fi
 
-if [ -f $HOME/bin/ei ]; then
-  source $HOME/bin/ei
-fi
-
-export HISTTIMEFORMAT='%F %T '
+[[ -f $HOME/.dir_colors ]] && eval `dircolors ~/.dir_colors`
 
 export EDITOR=vi
 export VISUAL=vi
 
-# Slightly iffy hack to get SERVER_ID set, even when using sudo.
-[[ -s /etc/profile.d/chef_vars.sh ]] && . /etc/profile.d/chef_vars.sh
+export HISTTIMEFORMAT='%F %T '
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export GREP_OPTIONS='--color=auto'
+alias grep="$(which grep) $GREP_OPTIONS"
+unset GREP_OPTIONS
 
 type -P direnv &>/dev/null && eval "$(direnv hook bash)"
 
-export GOPATH=$HOME/gocode
-export PATH=$PATH:$GOPATH/bin
+export NVM_DIR=$HOME/.nvm
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
 
+export PATH=/usr/local/bin:$PATH:$HOME/bin
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+if [ -f $HOME/bin/ei ]; then
+  source $HOME/bin/ei
+fi
