@@ -17,10 +17,6 @@ export VISUAL=vi
 
 export HISTTIMEFORMAT='%F %T '
 
-export GREP_OPTIONS='--color=auto'
-alias grep="$(which grep) $GREP_OPTIONS"
-unset GREP_OPTIONS
-
 type -P direnv &>/dev/null && eval "$(direnv hook bash)"
 
 export NVM_DIR=$HOME/.nvm
