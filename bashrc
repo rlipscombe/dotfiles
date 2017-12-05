@@ -1,5 +1,6 @@
 [[ -s $HOME/.bash_prompt ]] && . $HOME/.bash_prompt
 [[ -f $HOME/.bash_aliases ]] && . $HOME/.bash_aliases
+[[ -s $HOME/.bash_completion ]] && . $HOME/.bash_completion
 
 # "gnome-terminal" actually supports 256 color; turn that on.
 export ACTUAL_TERM=$TERM
