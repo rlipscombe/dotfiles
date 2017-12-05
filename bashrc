@@ -22,6 +22,7 @@ type -P direnv &>/dev/null && eval "$(direnv hook bash)"
 
 export NVM_DIR=$HOME/.nvm
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export PATH=/usr/local/bin:$PATH:$HOME/bin
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
