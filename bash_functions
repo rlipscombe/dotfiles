@@ -12,7 +12,7 @@ refresh_aws_session_token() {
     fi
 
     # Cannot call GetSessionToken with session credentials
-    unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
+    clear_aws_session_token
 
     # Uses the ambient AWS_PROFILE environment variable and ~/.aws/credentials
     local creds=$(aws sts get-session-token --serial-number $AWS_MFA_SERIAL --token-code $token \
@@ -24,6 +24,10 @@ refresh_aws_session_token() {
     export AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
 }
 
+clear_aws_session_token() {
+    unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
+}
+
 use_aws_profile() {
     if [ $# -ne 1 ]; then
         echo "use_aws_profile PROFILE"
@@ -31,8 +35,12 @@ use_aws_profile() {
     fi
 
     local profile=$1
-    
+
     export AWS_PROFILE=$profile
 
-    unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN
+    clear_aws_session_token
+
+    # Look in ~/.aws/mfa for an MFA token matching the profile name
+    AWS_MFA_SERIAL=$(grep $AWS_PROFILE ~/.aws/mfa | cut -d= -f2)
+    export AWS_MFA_SERIAL       # might be empty; this is fine.
 }
