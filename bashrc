@@ -45,3 +45,8 @@ if grep -qE '(Microsoft|WSL)' /proc/version &>/dev/null; then
     umask 0002
     export PATH="$PATH:$HOME/.local/bin"
 fi
+
+if [ -d $HOME/.asdf ]; then
+    source $HOME/.asdf/asdf.sh
+    source $HOME/.asdf/completions/asdf.bash
+fi
