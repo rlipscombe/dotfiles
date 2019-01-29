@@ -40,3 +40,8 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+if grep -qE '(Microsoft|WSL)' /proc/version &>/dev/null; then
+    umask 0002
+    export PATH="$PATH:$HOME/.local/bin"
+fi
