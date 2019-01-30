@@ -41,3 +41,36 @@ use_elixir() {
         tput sgr0
     fi
 }
+
+# ~/Source/pyenv/pyenv/plugins/python-build/bin/python-build 2.7.15 ~/.pyenv/pythons/2.7.15
+
+use_python() {
+    PYTHON_VERSION="$1"
+    if [ -s "$HOME/.pyenv/pythons/$PYTHON_VERSION" ]; then
+        load_prefix "$HOME/.pyenv/pythons/$PYTHON_VERSION"
+    else
+        tput setaf 1
+        echo "Python $PYTHON_VERSION not available; using default"
+        tput sgr0
+    fi
+}
+
+# ~/Source/postmodern/ruby-install-0.7.0/bin/ruby-install --rubies-dir ~/.rbenv/versions/2.4.4 ruby 2.4.4
+
+use_ruby() {
+    RUBY_VERSION="$1"
+    if [ -s "$HOME/.rbenv/versions/$RUBY_VERSION" ]; then
+        load_prefix "$HOME/.rbenv/versions/$RUBY_VERSION/ruby-$RUBY_VERSION"
+    else
+        tput setaf 1
+        echo "Ruby $RUBY_VERSION not available; using default"
+        tput sgr0
+    fi
+}
+
+use_nodejs() {
+    NODE_VERSION="$1"
+
+    type nvm >/dev/null 2>&1 || . ~/.nvm/nvm.sh
+    nvm use "$NODE_VERSION"
+}
