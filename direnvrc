@@ -42,30 +42,37 @@ use_elixir() {
     fi
 }
 
-# ~/Source/pyenv/pyenv/plugins/python-build/bin/python-build 2.7.15 ~/.pyenv/pythons/2.7.15
-
 use_python() {
     PYTHON_VERSION="$1"
-    if [ -s "$HOME/.pyenv/pythons/$PYTHON_VERSION" ]; then
-        load_prefix "$HOME/.pyenv/pythons/$PYTHON_VERSION"
+
+    PYTHONS_DIR="$HOME/.pyenv/pythons"
+    PYTHON_PREFIX="$PYTHONS_DIR/$PYTHON_VERSION"
+    if [ -s "$PYTHON_PREFIX" ]; then
+        load_prefix "$PYTHON_PREFIX"
     else
         tput setaf 1
         echo "Python $PYTHON_VERSION not available; using default"
+        echo "See http://blog.differentpla.net/blog/2019/01/30/python-build/"
         tput sgr0
     fi
 }
 
-# ~/Source/postmodern/ruby-install-0.7.0/bin/ruby-install --rubies-dir ~/.rbenv/versions/2.4.4 ruby 2.4.4
-
 use_ruby() {
     RUBY_VERSION="$1"
-    if [ -s "$HOME/.rbenv/versions/$RUBY_VERSION" ]; then
-        load_prefix "$HOME/.rbenv/versions/$RUBY_VERSION/ruby-$RUBY_VERSION"
+
+    RUBIES_DIR="$HOME/.rubies"
+    RUBY_PREFIX="$RUBIES_DIR/ruby-$RUBY_VERSION"
+    if [ -s "$RUBY_PREFIX" ]; then
+        load_prefix "$RUBY_PREFIX"
     else
         tput setaf 1
         echo "Ruby $RUBY_VERSION not available; using default"
+        echo "See http://blog.differentpla.net/blog/2019/01/30/ruby-install/"
         tput sgr0
     fi
+
+    # TODO: If relevant, remind the user to do the following:
+    # gem install bundler && bundle install
 }
 
 use_nodejs() {
