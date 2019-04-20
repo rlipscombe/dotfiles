@@ -75,6 +75,15 @@ use_ruby() {
     # gem install bundler && bundle install
 }
 
+bundle_check() {
+    # This has to come after 'layout ruby'
+    if [ -f Gemfile ]; then
+        gem list -i '^bundler$' >/dev/null || \
+            gem install --no-ri --no-rdoc bundler && \
+            bundle check
+    fi
+}
+
 use_nodejs() {
     NODE_VERSION="$1"
 
