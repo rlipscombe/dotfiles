@@ -13,11 +13,13 @@ use_erlang() {
         else
             tput setaf 1
             echo "Erlang/OTP $OTP_VERSION not available via kerl; using default"
+            echo "See http://blog.differentpla.net/blog/2019/01/30/installing-erlang-with-kerl/"
             tput sgr0
         fi
     else
         tput setaf 1
         echo "kerl not available; using default Erlang"
+        echo "See http://blog.differentpla.net/blog/2019/01/30/installing-kerl/"
         tput sgr0
     fi
 }
@@ -33,11 +35,13 @@ use_elixir() {
         else
             tput setaf 1
             echo "Elixir $ELIXIR_VERSION not available via kiex; using default"
+            echo "See http://blog.differentpla.net/blog/2019/01/30/installing-elixir-with-kiex/"
             tput sgr0
         fi
     else
         tput setaf 1
         echo "kiex not available; using default Elixir"
+        echo "See http://blog.differentpla.net/blog/2019/01/30/installing-kiex/"
         tput sgr0
     fi
 }
