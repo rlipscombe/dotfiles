@@ -64,6 +64,7 @@ function git_prompt_command() {
   behind_branch_pattern="^## (.*)\.\.\.([^${IFS}]*) \[behind (.*)\]"
   ahead_behind_branch_pattern="^## (.*)\.\.\.([^${IFS}]*) \[ahead (.*), behind (.*)\]"
   gone_branch_pattern="^## (.*)\.\.\.([^${IFS}]*) \[gone]"
+  no_branch_pattern="^## (.*) \(no branch\)"
  
   ahead=0
   behind=0
@@ -92,6 +93,9 @@ function git_prompt_command() {
     branch=${BASH_REMATCH[1]}
     ahead=${BASH_REMATCH[3]}
     behind=${BASH_REMATCH[4]}
+  fi
+  if [[ ${git_status} =~ ${no_branch_pattern} ]]; then
+    branch=${BASH_REMATCH[1]}
   fi
 
   # Parse the file details.
