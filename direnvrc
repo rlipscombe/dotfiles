@@ -14,6 +14,9 @@ use_erlang() {
             tput setaf 1
             echo "Erlang/OTP $OTP_VERSION not available via kerl; using default"
             echo "See http://blog.differentpla.net/blog/2019/01/30/installing-erlang-with-kerl/"
+            tput setaf 7
+            echo "  kerl build git https://github.com/erlang/otp.git $OTP_VERSION $OTP_VERSION"
+            echo "  kerl install $OTP_VERSION $HOME/.kerl/erlangs/$OTP_VERSION"
             tput sgr0
         fi
     else
@@ -36,6 +39,8 @@ use_elixir() {
             tput setaf 1
             echo "Elixir $ELIXIR_VERSION not available via kiex; using default"
             echo "See http://blog.differentpla.net/blog/2019/01/30/installing-elixir-with-kiex/"
+            tput setaf 7
+            echo "  kiex install $ELIXIR_VERSION"
             tput sgr0
         fi
     else
