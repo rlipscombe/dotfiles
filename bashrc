@@ -42,3 +42,5 @@ if grep -qE '(Microsoft|WSL)' /proc/version &>/dev/null; then
     umask 0002
     export PATH="$PATH:$HOME/.local/bin"
 fi
+
+export QUOTING_STYLE=literal
