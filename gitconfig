@@ -1,0 +1,44 @@
+[include]
+    path = .gitconfig.user
+
+[push]
+    default = upstream
+
+[pull]
+    rebase = true
+
+[rerere]
+    enabled = true
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+
+[color "status"]
+    added = green bold
+    changed = red bold
+    untracked = blue bold
+
+[color "diff"]
+    whitespace = red reverse
+
+[alias]
+    st = status --short --branch
+    ci = commit --verbose
+    br = branch --sort=-committerdate
+    merged = branch --merged
+    lg = log --pretty=oneline -n 15
+    log1 = log --pretty=oneline
+
+    start = !git init \
+        && git commit --allow-empty -m \"Initial commit\" \
+        && git tag -am \"Initial commit\" initial-commit
+
+[core]
+    excludesfile = ~/.gitignore-global
+    attributesfile = ~/.gitattributes
+
+[diff "image"]
+    command = ~/bin/git-imgdiff
