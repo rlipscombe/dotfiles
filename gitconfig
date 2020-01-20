@@ -42,3 +42,5 @@
 
 [diff "image"]
     command = ~/bin/git-imgdiff
+
+# vi: set ft=gitconfig:
