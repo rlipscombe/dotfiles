@@ -10,6 +10,9 @@ case $OSTYPE in
   ;;
 esac
 
+# mv's default of overwriting the output file is annoying.
+alias mv='mv -n'
+
 # If mvim exists, then we're probably on the Mac;
 # alias gvim=mvim, to save my muscle memory.
 [[ `which mvim` ]] && alias gvim=mvim
