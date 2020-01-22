@@ -2,6 +2,7 @@
 case $OSTYPE in
   darwin*)
     alias ls='ls -FGh'
+    # muscle memory: lsusb: do something vaguely similar
     alias lsusb='system_profiler SPUSBDataType'
   ;;
   *)
