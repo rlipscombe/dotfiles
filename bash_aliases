@@ -17,6 +17,7 @@ alias mv='mv -n'
 # alias gvim=mvim, to save my muscle memory.
 [[ `which mvim` ]] && alias gvim=mvim
 
+# grep: use colors
 export GREP_OPTIONS='--color=auto'
 alias grep="$(which grep) $GREP_OPTIONS"
 unset GREP_OPTIONS
