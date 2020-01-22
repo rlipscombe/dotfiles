@@ -21,3 +21,6 @@ alias mv='mv -n'
 export GREP_OPTIONS='--color=auto'
 alias grep="$(which grep) $GREP_OPTIONS"
 unset GREP_OPTIONS
+
+# docker ps is too verbose
+alias docker-ps="docker ps --format '{{.ID}}\t{{.Status}}\t{{.Names}}' | sort -k3"
