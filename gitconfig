@@ -1,6 +1,3 @@
-[include]
-    path = .gitconfig.user
-
 [push]
     default = upstream
 
@@ -42,5 +39,11 @@
 
 [diff "image"]
     command = ~/bin/git-imgdiff
+
+[init]
+    templatedir = /Users/rlipscombe/.git-templates
+
+[user]
+    useconfigonly = true
 
 # vi: set ft=gitconfig:
