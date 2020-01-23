@@ -30,8 +30,8 @@ export NVM_DIR=$HOME/.nvm
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-if [ -f $HOME/bin/ei ]; then
-  source $HOME/bin/ei
+if [ -f .bashrc.extra ]; then
+  source .bashrc.extra
 fi
 
 if ! shopt -oq posix; then
