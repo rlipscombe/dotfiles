@@ -46,4 +46,7 @@
 [user]
     useconfigonly = true
 
+[diff]
+    renameLimit = 10240
+
 # vi: set ft=gitconfig:
