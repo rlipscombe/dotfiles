@@ -41,7 +41,7 @@
     command = ~/bin/git-imgdiff
 
 [init]
-    templatedir = /Users/rlipscombe/.git-templates
+    templatedir = ~/.git-templates
 
 [user]
     useconfigonly = true
