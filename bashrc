@@ -48,3 +48,4 @@ if grep -qE '(Microsoft|WSL)' /proc/version &>/dev/null; then
 fi
 
 export QUOTING_STYLE=literal
+[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
