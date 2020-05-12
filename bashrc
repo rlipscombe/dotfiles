@@ -47,4 +47,7 @@ fi
 
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export QUOTING_STYLE=literal
+
 [ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
+
+type -P kubectl &>/dev/null && source <(kubectl completion bash)
