@@ -200,6 +200,7 @@ function git_prompt_command() {
 
 function prompt_command() {
   stty sane
+  perl -MFcntl -e 'fcntl STDIN, F_SETFL, fcntl(STDIN, F_GETFL, 0) & ~O_NONBLOCK'
   git_prompt="$(git_prompt_command)"
 
   if [[ ${SERVER_ID} != '' ]]; then
