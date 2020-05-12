@@ -30,9 +30,7 @@ export NVM_DIR=$HOME/.nvm
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-if [ -f .bashrc.extra ]; then
-  source .bashrc.extra
-fi
+[ -s .bashrc.extra ] && \. ".bashrc.extra"
 
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
