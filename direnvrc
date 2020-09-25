@@ -108,6 +108,8 @@ bundle_check() {
 use_nodejs() {
     NODE_VERSION="$1"
 
+    export NVM_DIR=$HOME/.nvm
+
     type nvm >/dev/null 2>&1 || . ~/.nvm/nvm.sh
     nvm use "$NODE_VERSION"
 }
