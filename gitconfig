@@ -29,10 +29,6 @@
     lg = log --pretty=oneline -n 15
     log1 = log --pretty=oneline
 
-    start = !git init \
-        && git commit --allow-empty -m \"Initial commit\" \
-        && git tag -am \"Initial commit\" initial-commit
-
 [core]
     excludesfile = ~/.gitignore-global
     attributesfile = ~/.gitattributes
