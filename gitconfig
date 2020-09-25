@@ -41,6 +41,7 @@
 
 [user]
     useconfigonly = true
+    name = Roger Lipscombe
 
 [diff]
     renameLimit = 10240
