@@ -129,3 +129,5 @@ use_fnm() {
         tput sgr0
    fi
 }
+
+# vi: ft=bash

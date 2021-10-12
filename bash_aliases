@@ -24,3 +24,5 @@ unset GREP_OPTIONS
 
 # docker ps is too verbose
 alias docker-ps="docker ps --format '{{.ID}}\t{{.Status}}\t{{.Names}}' | sort -k3"
+
+# vi: ft=bash
