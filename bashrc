@@ -17,6 +17,7 @@ export VISUAL=vi
 
 export HISTTIMEFORMAT='%F %T '
 
+# direnv hooks into PROMPT_COMMAND so it can spot when you change directory.
 type -P direnv &>/dev/null && eval "$(direnv hook bash)"
 
 export NVM_DIR=$HOME/.nvm
