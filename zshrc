@@ -97,6 +97,10 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
+# Prevent less from scrolling if the output would fit on one page;
+# honour colour codes.
+export LESS="--no-init --quit-if-one-screen -R"
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
