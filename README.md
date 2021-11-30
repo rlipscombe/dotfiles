@@ -1,12 +1,7 @@
-These files make up my bash profile. There's a `.bashrc`, a `.bash_profile` and a bunch of helpers.
-
-## Features
-
- - color prompt.
- - terminal title bar follows prompt.
- - git status.
+These are my "dotfiles". There's my (old) bash profile, my (new) zsh profile,
+and a bunch of related things, such as tmux config.
 
 ## Installation
 
     git clone https://github.com/rlipscombe/dotfiles
-    dotfiles/mk
+    dotfiles/install.zsh
