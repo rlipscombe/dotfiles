@@ -46,6 +46,7 @@ if grep -qE '(Microsoft|WSL)' /proc/version &>/dev/null; then
 fi
 
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
+export BASH_SILENCE_DEPRECATION_WARNING=1
 export QUOTING_STYLE=literal
 
 [ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
