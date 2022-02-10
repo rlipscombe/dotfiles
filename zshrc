@@ -136,5 +136,8 @@ export LESS="--no-init --quit-if-one-screen -R"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Turn off Auto CD
+unsetopt AUTO_CD
+
 # Set open file limit to something a bit more usable
 ulimit -n 524288
