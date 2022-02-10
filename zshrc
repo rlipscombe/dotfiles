@@ -135,3 +135,6 @@ export LESS="--no-init --quit-if-one-screen -R"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Set open file limit to something a bit more usable
+ulimit -n 524288
