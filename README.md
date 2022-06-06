@@ -1,6 +1,14 @@
 These are my "dotfiles". There's my (old) bash profile, my (new) zsh profile,
 and a bunch of related things, such as tmux config.
 
+## Install zsh
+
+    sudo apt install zsh curl
+    chsh -d /usr/bin/zsh
+    touch ~/.zshrc
+    
+Either log out and back in or just run `zsh`, then...
+
 ## Installation
 
     git clone https://github.com/rlipscombe/dotfiles
