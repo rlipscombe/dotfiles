@@ -13,3 +13,5 @@ Either log out and back in or just run `zsh`, then...
 
     git clone https://github.com/rlipscombe/dotfiles
     dotfiles/install.zsh
+
+The above will install Oh-My-Zsh and sort out some symlinks. You'll have to restart zsh to load everything properly.
