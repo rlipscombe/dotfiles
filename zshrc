@@ -78,6 +78,7 @@ plugins=(
     brew
     direnv
     git
+    kubectl
     mix
     ssh-agent
     rlipscombe-git
