@@ -1,6 +1,5 @@
 [[ -r ~/.bashrc ]] && . ~/.bashrc
 
-export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # OPAM configuration
@@ -10,3 +9,4 @@ if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc
 if [ -e $HOME/owl/owl.bashrc ]; then . $HOME/owl/owl.bashrc; fi
 
 # vi: ft=bash
+. "$HOME/.cargo/env"

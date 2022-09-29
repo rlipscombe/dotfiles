@@ -60,3 +60,4 @@ TWILIO_AC_BASH_SETUP_PATH=/home/roger/.twilio-cli/autocomplete/bash_setup
 test -f $TWILIO_AC_BASH_SETUP_PATH && source $TWILIO_AC_BASH_SETUP_PATH;
 
 # vi: ft=bash
+. "$HOME/.cargo/env"
