@@ -86,6 +86,15 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# OMZ plugins are *obsessed* with adding aliases; delete them.
+unalias afind
+unalias ${(k)aliases[(R)brew *]}
+unalias bubu
+unalias ${(k)aliases[(R)git *]}
+unalias g ggpur gk gke glp grt gstu gtl
+unalias ${(k)aliases[(R)kubectl *]}
+unalias k kca kgdsw kgdw kgdwide kgpl kgpn kgpvcw kgpw kgpwide kgssw kgsswide kgsw kgswide
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
