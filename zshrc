@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -77,6 +77,7 @@ plugins=(
     aws
     brew
     direnv
+    docker
     git
     kubectl
     mix
@@ -108,6 +109,13 @@ unalias k kca kgdsw kgdw kgdwide kgpl kgpn kgpvcw kgpw kgpwide kgssw kgsswide kg
 # else
 #   export EDITOR='mvim'
 # fi
+
+# Add Homebrew-installed things to the PATH
+export PATH="/opt/homebrew/opt/erlang@24/bin:$PATH"
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 
 # Prevent less from scrolling if the output would fit on one page;
 # honour colour codes.

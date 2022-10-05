@@ -1,0 +1,35 @@
+#!/bin/bash
+
+search_up() {
+    f="$1"
+    p="$(pwd)"
+    while [ "$p" != "/"  ] && [ ! -f "$p/$f" ]; do
+        p=$(dirname "$p")
+    done
+
+    f="${p%/}/$f"
+    echo "$f"
+}
+
+f=$(search_up ".git-email")
+if [ -f "$f" ]
+then
+    email="$(cat "$f")"
+fi
+
+if [ -z "${email}" ]; then
+    echo "Error: Missing .git-email file."
+    exit 1
+fi
+
+git init \
+    && git config user.email "$email" \
+    && git commit --allow-empty -m "Initial commit" \
+    && git tag -am "Initial commit" initial-commit
+
+f=$(search_up ".git-default-branch")
+if [ -f "$f" ]
+then
+    branch="$(cat "$f")"
+    git branch -m "$branch"
+fi
