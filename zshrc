@@ -81,6 +81,7 @@ plugins=(
     git
     kubectl
     mix
+    nvm
     ssh-agent
     rlipscombe-git
 )
