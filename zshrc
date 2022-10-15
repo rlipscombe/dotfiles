@@ -92,6 +92,7 @@ source $ZSH/oh-my-zsh.sh
 unalias afind &>/dev/null
 unalias ${(k)aliases[(R)brew *]} &>/dev/null
 unalias bubu &>/dev/null
+unalias ${(k)aliases[(R)docker *]} &>/dev/null
 unalias ${(k)aliases[(R)git *]} &>/dev/null
 unalias g ggpur gk gke glp grt gstu gtl &>/dev/null
 unalias ${(k)aliases[(R)kubectl *]} &>/dev/null
