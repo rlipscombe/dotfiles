@@ -112,6 +112,8 @@ unalias k kca kgdsw kgdw kgdwide kgpl kgpn kgpvcw kgpw kgpwide kgssw kgsswide kg
 #   export EDITOR='mvim'
 # fi
 
+# Add rebar3 to the PATH
+export PATH="$PATH:$HOME/.cache/rebar3/bin"
 
 # Prevent less from scrolling if the output would fit on one page;
 # honour colour codes.
