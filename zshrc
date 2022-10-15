@@ -112,12 +112,6 @@ unalias k kca kgdsw kgdw kgdwide kgpl kgpn kgpvcw kgpw kgpwide kgssw kgsswide kg
 #   export EDITOR='mvim'
 # fi
 
-# Add Homebrew-installed things to the PATH
-export PATH="/opt/homebrew/opt/erlang@24/bin:$PATH"
-export PATH="/opt/homebrew/opt/curl/bin:$PATH"
-export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
-export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 
 # Prevent less from scrolling if the output would fit on one page;
 # honour colour codes.
