@@ -4,6 +4,9 @@
 [pull]
     rebase = true
 
+[rebase]
+    autosquash = true
+
 [rerere]
     enabled = true
 
@@ -28,6 +31,7 @@
     merged = branch --merged
     lg = log --pretty=oneline -n 15
     log1 = log --pretty=oneline
+    fixup = "!git log -n 20 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
 
 [core]
     excludesfile = ~/.gitignore-global
