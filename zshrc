@@ -99,6 +99,10 @@ unalias g ggpur gk gke glp grt gstu gtl &>/dev/null
 unalias ${(k)aliases[(R)kubectl *]} &>/dev/null
 unalias k kca kgdsw kgdw kgdwide kgpl kgpn kgpvcw kgpw kgpwide kgssw kgsswide kgsw kgswide &>/dev/null
 
+if ! _kube_ps1_binary_check "${KUBE_PS1_BINARY}"; then
+  KUBE_PS1_ENABLED=off
+fi
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
