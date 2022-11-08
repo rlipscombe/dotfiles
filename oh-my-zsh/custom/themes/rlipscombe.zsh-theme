@@ -1,6 +1,7 @@
 # Working directory, top 2 levels...
 PROMPT='%{%F{14}%}%2~%{$reset_color%} '
 PROMPT+='$(aws_prompt_info)'
+PROMPT+='$(kube_ps1)'
 PROMPT+='$(git_prompt_info)'
 # ... % or #, red/green by exitcode
 PROMPT+='%(?:%{$fg[green]%}:%{$fg[red]%})%#%{$reset_color%} '
@@ -10,6 +11,20 @@ PROMPT+='%(?:%{$fg[green]%}:%{$fg[red]%})%#%{$reset_color%} '
 
 ZSH_THEME_AWS_PREFIX="%{%F{172}%}<"
 ZSH_THEME_AWS_SUFFIX=">%{$reset_color%} "
+
+function _kube_ps1_short_cluster() {
+  case "$1" in
+  arn:aws:*)
+    echo "$1" | cut -d/ -f2
+  ;;
+  *)
+    echo "$1"
+  ;;
+esac
+}
+
+KUBE_PS1_CLUSTER_FUNCTION=_kube_ps1_short_cluster
+KUBE_PS1_SUFFIX=") "
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[white]%}["
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg[white]%}]%{$reset_color%} "

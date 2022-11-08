@@ -80,6 +80,7 @@ plugins=(
     docker
     git
     kubectl
+    kube-ps1
     mix
     nvm
     ssh-agent
