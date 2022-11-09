@@ -1,7 +1,7 @@
 # Working directory, top 2 levels...
 PROMPT='%{%F{14}%}%2~%{$reset_color%} '
 PROMPT+='$(aws_prompt_info)'
-PROMPT+='$(kube_ps1)'
+#PROMPT+='$(kube_ps1)'
 PROMPT+='$(git_prompt_info)'
 # ... % or #, red/green by exitcode
 PROMPT+='%(?:%{$fg[green]%}:%{$fg[red]%})%#%{$reset_color%} '
