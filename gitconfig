@@ -37,9 +37,6 @@
     excludesfile = ~/.gitignore-global
     attributesfile = ~/.gitattributes
 
-[diff "image"]
-    command = ~/bin/git-imgdiff
-
 [init]
     templatedir = ~/.git-templates
 
