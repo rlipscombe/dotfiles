@@ -29,9 +29,9 @@
     ci = commit --verbose
     br = branch --sort=-committerdate
     merged = branch --merged
-    lg = log --pretty=oneline -n 15
+    lg = log --pretty=oneline -n 24
     log1 = log --pretty=oneline
-    fixup = "!git log -n 20 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
+    fixup = "!git log -n 24 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
 
 [core]
     excludesfile = ~/.gitignore-global
