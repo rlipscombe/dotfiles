@@ -1,10 +1,10 @@
 # Working directory, top 2 levels...
-PROMPT='%{%F{14}%}%2~%{$reset_color%} '
+PROMPT='%{%F{14}%}%2~%f '
 PROMPT+='$(aws_prompt_info)'
 #PROMPT+='$(kube_ps1)'
 PROMPT+='$(git_prompt_info)'
 # ... % or #, red/green by exitcode
-PROMPT+='%(?:%{$fg[green]%}:%{$fg[red]%})%#%{$reset_color%} '
+PROMPT+='%(?:%{$fg[green]%}:%{$fg[red]%})%#%f '
 
 # 256 Colors Cheat Sheet: https://www.ditig.com/256-colors-cheat-sheet
 # Note that silver (7) is barely-distinguishable from white (15) in the Ubuntu Tango colour scheme.
