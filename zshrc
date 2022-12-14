@@ -87,6 +87,8 @@ plugins=(
     rlipscombe-git
 )
 
+export KUBECONFIG="$HOME/.kube/config"
+
 source $ZSH/oh-my-zsh.sh
 
 # OMZ plugins are *obsessed* with adding aliases; delete them.
