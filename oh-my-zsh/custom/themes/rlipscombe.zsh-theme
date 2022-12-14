@@ -1,5 +1,11 @@
+PROMPT=''
+if [[ -n $SSH_CONNECTION ]]; then
+  # user@host
+  PROMPT+='%{%F{6}%}%n'
+  PROMPT+='@%m:%{$reset_color%}'
+fi
 # Working directory, top 2 levels...
-PROMPT='%{%F{14}%}%2~%f '
+PROMPT+='%{%F{14}%}%2~%f '
 PROMPT+='$(aws_prompt_info)'
 #PROMPT+='$(kube_ps1)'
 PROMPT+='$(git_prompt_info)'
