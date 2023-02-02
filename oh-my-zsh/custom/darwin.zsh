@@ -11,5 +11,11 @@ case "$OSTYPE" in
 
     # Workaround for the fact that GNU ls got to the front of $PATH
     alias ls="/bin/ls -GF"
+
+    # Add flutter to PATH
+    export PATH="$PATH:$HOME/Applications/flutter/bin"
+
+    # Add Android SDK to PATH
+    export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
   ;;
 esac
