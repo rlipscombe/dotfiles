@@ -79,6 +79,7 @@ plugins=(
     direnv
     docker
     git
+    helm
     kubectl
 #    kube-ps1
     mix
