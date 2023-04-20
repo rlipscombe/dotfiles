@@ -151,3 +151,7 @@ ulimit -n 524288
 
 # Don't remove trailing slash on tab completion
 setopt no_auto_remove_slash
+
+# bat settings
+export BAT_THEME=OneHalfDark
+export BAT_STYLE=numbers,changes
