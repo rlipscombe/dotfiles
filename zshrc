@@ -127,6 +127,9 @@ export PATH="$PATH:$HOME/.cache/rebar3/bin"
 # (be explicit, to avoid using gnubin/stty on macOS)
 rebar3() { set -o localoptions -o localtraps ; trap '/bin/stty sane' INT ; command rebar3 "$@" ; }
 
+# Add mix escripts to the PATH
+export PATH="$PATH:$HOME/.mix/escripts"
+
 # Prevent less from scrolling if the output would fit on one page;
 # honour colour codes.
 export LESS="--no-init --quit-if-one-screen -R"
