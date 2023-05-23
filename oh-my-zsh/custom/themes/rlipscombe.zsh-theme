@@ -6,7 +6,7 @@ if [[ -n $SSH_CONNECTION ]]; then
 fi
 # Working directory, top 2 levels...
 PROMPT+='%{%F{14}%}%2~%f '
-PROMPT+='$(aws_prompt_info)'
+#PROMPT+='$(aws_prompt_info)'
 #PROMPT+='$(kube_ps1)'
 PROMPT+='$(git_prompt_info)'
 # ... % or #, red/green by exitcode
