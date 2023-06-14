@@ -15,7 +15,7 @@ alias mv='mv -i'
 
 # If mvim exists, then we're probably on the Mac;
 # alias gvim=mvim, to save my muscle memory.
-[[ `which mvim` ]] && alias gvim=mvim
+[[ $(which mvim) ]] && alias gvim=mvim
 
 # grep: use colors
 export GREP_OPTIONS='--color=auto'
