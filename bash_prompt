@@ -65,10 +65,10 @@ function git_prompt_command() {
   ahead_behind_branch_pattern="^## (.*)\.\.\.([^${IFS}]*) \[ahead (.*), behind (.*)\]"
   gone_branch_pattern="^## (.*)\.\.\.([^${IFS}]*) \[gone]"
   no_branch_pattern="^## (.*) \(no branch\)"
- 
+
   ahead=0
   behind=0
- 
+
   if [[ ${git_status} =~ ${normal_branch_pattern1} ]]; then
     branch=${BASH_REMATCH[1]}
   fi
@@ -84,7 +84,7 @@ function git_prompt_command() {
   if [[ ${git_status} =~ ${ahead_branch_pattern} ]]; then
     branch=${BASH_REMATCH[1]}
     ahead=${BASH_REMATCH[3]}
-  fi  
+  fi
   if [[ ${git_status} =~ ${behind_branch_pattern} ]]; then
     branch=${BASH_REMATCH[1]}
     behind=${BASH_REMATCH[3]}
@@ -101,7 +101,7 @@ function git_prompt_command() {
   # Parse the file details.
   # Each line is "XY filename", where X denotes the index status, and Y the working status.
   file_pattern="^([^#])(.) (.*)$"
-  
+
   dirty=0
 
   index_added=()
@@ -165,7 +165,7 @@ function git_prompt_command() {
   if [[ ${#index_added[*]} != 0 ]]; then
     echo -n " +${#index_added[*]}"
   fi
-  
+
   if [[ ${#index_modified[*]} != 0 ]]; then
     echo -n " ~${#index_modified[*]}"
   fi
