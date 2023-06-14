@@ -10,7 +10,7 @@ if [ "$COLORTERM" == "gnome-terminal" ]; then
   export COLORTERM=xterm-256color
 fi
 
-[[ "$OSTYPE" -ne "darwin" && -f $HOME/.dir_colors ]] && eval `dircolors ~/.dir_colors`
+[[ "$OSTYPE" = "darwin" && -f $HOME/.dir_colors ]] && eval "$(dircolors ~/.dir_colors)"
 
 export EDITOR=vi
 export VISUAL=vi
