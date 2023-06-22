@@ -131,6 +131,15 @@ rebar3() {
     command rebar3 "$@"
 }
 
+betssm() {
+    case $1 in
+        creds|eks|clear)
+            eval $(command betssm "$@") ;;
+        *)
+            command betssm "$@" ;;
+    esac
+}
+
 # Add mix escripts to the PATH
 export PATH="$PATH:$HOME/.mix/escripts"
 
