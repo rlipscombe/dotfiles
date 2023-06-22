@@ -8,6 +8,7 @@ case "$OSTYPE" in
     export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
     export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
     export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+    export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
 
     # Workaround for the fact that GNU ls got to the front of $PATH
     alias ls="/bin/ls -GF"
