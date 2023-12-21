@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
+# Path to your oh-my-zsh installation. This isn't managed by 'stow'.
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -66,7 +66,7 @@ zstyle ':omz:plugins:docker' legacy-completion yes
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
+ZSH_CUSTOM=$HOME/.omz/custom
 
 SHOW_AWS_PROMPT=false
 
@@ -123,26 +123,6 @@ unalias k kca kgdsw kgdw kgdwide kgpl kgpn kgpvcw kgpw kgpwide kgssw kgsswide kg
 #   export EDITOR='mvim'
 # fi
 
-# Add rebar3 to the PATH
-export PATH="$PATH:$HOME/.cache/rebar3/bin"
-
-# see https://github.com/erlang/rebar3/issues/644#issuecomment-1148809618
-# (be explicit, to avoid using gnubin/stty on macOS)
-rebar3() {
-    set -o localoptions -o localtraps
-    trap '/bin/stty sane' INT
-    command rebar3 "$@"
-}
-
-betssm() {
-    case $1 in
-        creds|eks|clear)
-            eval $(command betssm "$@") ;;
-        *)
-            command betssm "$@" ;;
-    esac
-}
-
 # Add mix escripts to the PATH
 export PATH="$PATH:$HOME/.mix/escripts"
 
@@ -170,7 +150,3 @@ ulimit -n 524288
 
 # Don't remove trailing slash on tab completion
 setopt no_auto_remove_slash
-
-# bat settings
-export BAT_THEME=OneHalfDark
-export BAT_STYLE=numbers,changes
