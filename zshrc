@@ -31,6 +31,9 @@ CASE_SENSITIVE="true"
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
 
+# See https://github.com/ohmyzsh/ohmyzsh/issues/11789
+zstyle ':omz:plugins:docker' legacy-completion yes
+
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
 

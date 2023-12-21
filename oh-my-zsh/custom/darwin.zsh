@@ -2,7 +2,7 @@ case "$OSTYPE" in
   darwin*)
     unalias l la ll ls lsa
 
-    # Add Homebrew-installed things to the PATH
+    # Add Homebrew-installed things to the PATH; they need to go in front, to override the macOS versions.
     export PATH="/opt/homebrew/opt/erlang@24/bin:$PATH"
     export PATH="/opt/homebrew/opt/curl/bin:$PATH"
     export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
@@ -18,5 +18,8 @@ case "$OSTYPE" in
 
     # Add Android SDK to PATH
     export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
+
+    # Put these back at the _start_:
+    export PATH="$HOME/bin:/usr/local/bin:$PATH"
   ;;
 esac
