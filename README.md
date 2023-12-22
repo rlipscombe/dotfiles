@@ -24,4 +24,4 @@ Either log out and back in or just run `zsh`, then...
 ## Activation
 
     cd path/to/dotfiles
-    stow -t $HOME zsh git
+    stow -t $HOME bash git kube tmux zsh
