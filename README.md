@@ -5,8 +5,12 @@ They're managed with `stow`; see https://www.gnu.org/software/stow/
 
 ## Prerequisite: stow
 
-    # As appropriate:
+Debian, Ubuntu, etc.:
+
     sudo apt install stow
+
+macOS:
+
     brew install stow
 
 ## Prerequisite: zsh
