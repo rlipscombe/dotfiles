@@ -116,13 +116,6 @@ unalias k kca kgdsw kgdw kgdwide kgpl kgpn kgpvcw kgpw kgpwide kgssw kgsswide kg
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
 # Add mix escripts to the PATH
 export PATH="$PATH:$HOME/.mix/escripts"
 
@@ -150,3 +143,7 @@ ulimit -n 524288
 
 # Don't remove trailing slash on tab completion
 setopt no_auto_remove_slash
+
+# Preferred editor
+export EDITOR=vi
+export VISUAL=vi
