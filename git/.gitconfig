@@ -1,3 +1,6 @@
+[core]
+	pager = delta
+
 [push]
 	default = upstream
 
@@ -9,6 +12,20 @@
 
 [rerere]
 	enabled = true
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	features = hoopoe
+	navigate = true
+	light = false
+
+[merge]
+	conflictstyle = diff3
+
+[diff]
+	colorMoved = default
 
 [color "status"]
 	added = green bold
