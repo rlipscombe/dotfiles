@@ -31,6 +31,8 @@ CASE_SENSITIVE="true"
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
 
+zstyle ':omz:plugins:ssh-agent' identities id_rsa id_work
+
 # See https://github.com/ohmyzsh/ohmyzsh/issues/11789
 zstyle ':omz:plugins:docker' legacy-completion yes
 
