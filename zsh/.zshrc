@@ -78,7 +78,6 @@ SHOW_AWS_PROMPT=false
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    ag
     aws
     brew
     direnv
