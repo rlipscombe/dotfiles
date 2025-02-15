@@ -41,8 +41,5 @@
 	br = branch --sort=-committerdate
 	fixup = "!git log -n 24 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
 
-[includeIf "gitdir:~/Source/Work/"]
-	path = ~/Source/Work/.gitconfig
-
-[includeIf "gitdir:~/Source/Personal/"]
-	path = ~/Source/Personal/.gitconfig
+[include]
+	path = ~/.gitconfig.local
