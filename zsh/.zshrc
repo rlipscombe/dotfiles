@@ -120,6 +120,9 @@ unalias k kca kgdsw kgdw kgdwide kgpl kgpn kgpvcw kgpw kgpwide kgssw kgsswide kg
 # Add mix escripts to the PATH
 export PATH="$PATH:$HOME/.mix/escripts"
 
+# Add kubectl plugins managed by krew
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 # Prevent less from scrolling if the output would fit on one page;
 # honour colour codes.
 export LESS="--no-init --quit-if-one-screen -R"
