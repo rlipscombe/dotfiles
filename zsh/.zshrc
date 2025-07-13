@@ -117,6 +117,13 @@ unalias k kca kgdsw kgdw kgdwide kgpl kgpn kgpvcw kgpw kgpwide kgssw kgsswide kg
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
+# Add kerl
+export PATH="$PATH:$HOME/.kerl/bin"
+
+# Add kiex
+KIEX_HOME=$HOME/.kiex
+test -s "$KIEX_HOME/scripts/kiex" && source "$KIEX_HOME/scripts/kiex"
+
 # Add mix escripts to the PATH
 export PATH="$PATH:$HOME/.mix/escripts"
 

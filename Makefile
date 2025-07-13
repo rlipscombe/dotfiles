@@ -1,6 +1,6 @@
-all: nvim tmux
+all: nvim tmux kerl kiex
 
-.PHONY: nvim tmux
+.PHONY: nvim tmux kerl kiex
 
 UNAME_S := $(shell uname -s)
 
@@ -29,6 +29,14 @@ tmux-install-Darwin:
 	brew list tmux || brew install tmux
 
 tmux-deps:
+
+kerl:
+	mkdir -p $(HOME)/.kerl/bin
+	curl -sSL https://raw.githubusercontent.com/kerl/kerl/master/kerl -o $(HOME)/.kerl/bin/kerl
+	chmod +x $(HOME)/.kerl/bin/kerl
+
+kiex:
+	curl -sSL https://raw.githubusercontent.com/taylor/kiex/master/install | bash -s
 
 other:
 	stow --target $(HOME) bash git kube zsh
